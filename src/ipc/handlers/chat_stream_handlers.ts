@@ -1038,11 +1038,12 @@ export function formatMessagesForSummary(
   const lastMessages = messages.slice(-lastMessageCount);
 
   // Combine them with an indicator of skipped messages
+  const omittedCount = messages.length - firstMessageCount - lastMessageCount;
   const combinedMessages = [
     ...firstMessages,
     {
       role: "system",
-      content: `[... ${messages.length - 8} messages omitted ...]`,
+      content: `[... ${omittedCount} messages omitted ...]`,
     },
     ...lastMessages,
   ];
