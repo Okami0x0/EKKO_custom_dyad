@@ -4,10 +4,6 @@
   "version": "1.0.0-custom",
   "description": "Okami Custom Dyad - Enhanced AI App Builder with Advanced Memory Management",
   "main": ".vite/build/main.js",
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:Okami0x0/EKKO_custom_dyad.git"
-  },
   "engines": {
     "node": ">=20"
   },
