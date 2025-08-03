@@ -1016,16 +1016,26 @@ ${problemReport.problems
 export function formatMessagesForSummary(
   messages: { role: string; content: string | undefined }[],
 ) {
-  if (messages.length <= 8) {
-    // If we have 8 or fewer messages, include all of them
+  const settings = readSettings();
+  
+  // Use enhanced memory settings if available
+  const maxSummaryMessages = settings.enableSmartMemoryManagement 
+    ? (settings.maxChatTurnsInContext || 20) 
+    : 8;
+    
+  if (messages.length <= maxSummaryMessages) {
+    // If we have fewer messages than the limit, include all of them
     return messages
       .map((m) => `<message role="${m.role}">${m.content}</message>`)
       .join("\n");
   }
 
-  // Take first 2 messages and last 6 messages
-  const firstMessages = messages.slice(0, 2);
-  const lastMessages = messages.slice(-6);
+  // Dynamic message selection based on memory settings
+  const firstMessageCount = Math.max(2, Math.floor(maxSummaryMessages * 0.25));
+  const lastMessageCount = maxSummaryMessages - firstMessageCount;
+  
+  const firstMessages = messages.slice(0, firstMessageCount);
+  const lastMessages = messages.slice(-lastMessageCount);
 
   // Combine them with an indicator of skipped messages
   const combinedMessages = [
