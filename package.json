@@ -1,8 +1,8 @@
 {
-  "name": "dyad",
-  "productName": "dyad",
+  "name": "dyad-unlimited",
+  "productName": "Dyad Unlimited",
   "version": "0.15.0-beta.2",
-  "description": "My Electron application description",
+  "description": "Dyad Unlimited - Open Source AI App Builder",
   "main": ".vite/build/main.js",
   "repository": {
     "type": "git",

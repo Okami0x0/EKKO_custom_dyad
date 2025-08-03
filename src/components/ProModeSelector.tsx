@@ -37,8 +37,8 @@ export function ProModeSelector() {
     });
   };
 
-  const hasProKey = settings ? hasDyadProKey(settings) : false;
-  const proModeTogglable = hasProKey && Boolean(settings?.enableDyadPro);
+  const hasProKey = true; // Always has Pro key in unlimited version
+  const proModeTogglable = true; // All Pro modes are toggleable
 
   return (
     <Popover>

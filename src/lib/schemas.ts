@@ -34,6 +34,11 @@ const providers = [
   "openrouter",
   "ollama",
   "lmstudio",
+  "cohere",
+  "perplexity",
+  "together",
+  "groq",
+  "deepseek",
 ] as const;
 
 export const cloudProviders = providers.filter(
@@ -158,6 +163,26 @@ export const UserSettingsSchema = z.object({
   enableNativeGit: z.boolean().optional(),
   enableAutoUpdate: z.boolean(),
   releaseChannel: ReleaseChannelSchema,
+  
+  // Enhanced Dyad Unlimited features
+  enableDarkMode: z.boolean().optional(),
+  enableSyntaxHighlighting: z.boolean().optional(),
+  enableAdvancedLogging: z.boolean().optional(),
+  enableMultipleProjects: z.boolean().optional(),
+  codeBackupInterval: z.number().optional(), // in minutes
+  maxUndoHistory: z.number().optional(),
+  enableCodeCompression: z.boolean().optional(),
+  enableAdvancedSearch: z.boolean().optional(),
+  
+  // Enhanced Memory Management
+  enableSmartMemoryManagement: z.boolean().optional(),
+  maxMemoryContextTokens: z.number().optional(), // Default: 100,000
+  memoryCompressionLevel: z.enum(["low", "medium", "high", "extreme"]).optional(),
+  enableLongTermMemory: z.boolean().optional(),
+  memoryRetentionDays: z.number().optional(), // How long to keep chat history
+  enableContextualMemory: z.boolean().optional(), // Remember project-specific context
+  maxProjectMemorySize: z.number().optional(), // MB limit for project memory
+  enableAutoSummarization: z.boolean().optional(), // Auto-summarize old conversations
 
   ////////////////////////////////
   // E2E TESTING ONLY.
@@ -178,11 +203,11 @@ export const UserSettingsSchema = z.object({
 export type UserSettings = z.infer<typeof UserSettingsSchema>;
 
 export function isDyadProEnabled(settings: UserSettings): boolean {
-  return settings.enableDyadPro === true && hasDyadProKey(settings);
+  return true; // Always enabled for unlimited version
 }
 
 export function hasDyadProKey(settings: UserSettings): boolean {
-  return !!settings.providerSettings?.auto?.apiKey?.value;
+  return true; // Always has Pro key for unlimited version
 }
 
 // Define interfaces for the props

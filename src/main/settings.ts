@@ -28,6 +28,33 @@ const DEFAULT_SETTINGS: UserSettings = {
   enableAutoUpdate: true,
   releaseChannel: "stable",
   selectedTemplateId: DEFAULT_TEMPLATE_ID,
+  
+  // Dyad Unlimited - Pre-enabled Pro features
+  enableDyadPro: true,
+  
+  // Enhanced Dyad Unlimited features - Pre-enabled with optimal settings
+  enableDarkMode: true,
+  enableSyntaxHighlighting: true,
+  enableAdvancedLogging: true,
+  enableMultipleProjects: true,
+  codeBackupInterval: 15, // Auto-backup every 15 minutes
+  maxUndoHistory: 100, // Keep 100 undo operations
+  enableCodeCompression: true,
+  enableAdvancedSearch: true,
+  
+  // Enhanced Memory Management - Pre-enabled with optimal settings
+  enableSmartMemoryManagement: true,
+  maxMemoryContextTokens: 150000, // 150K tokens for extended memory
+  memoryCompressionLevel: "medium", // Balanced compression
+  enableLongTermMemory: true,
+  memoryRetentionDays: 30, // Keep chat history for 30 days
+  enableContextualMemory: true, // Remember project-specific context
+  maxProjectMemorySize: 50, // 50MB limit for project memory
+  enableAutoSummarization: true, // Auto-summarize old conversations
+  
+  // Enhanced context management
+  maxChatTurnsInContext: 20, // Increased from default 8 to 20
+  thinkingBudget: "high", // Maximum thinking capability
 };
 
 const SETTINGS_FILE = "user-settings.json";

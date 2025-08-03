@@ -14,20 +14,13 @@ export function registerProHandlers() {
   // This method should try to avoid throwing errors because this is auxiliary
   // information and isn't critical to using the app
   handle("get-user-budget", async (): Promise<UserBudgetInfo | null> => {
-    if (IS_TEST_BUILD) {
-      // Avoid spamming the API in E2E tests.
-      return null;
-    }
-    logger.info("Attempting to fetch user budget information.");
-
-    const settings = readSettings();
-
-    const apiKey = settings.providerSettings?.auto?.apiKey?.value;
-
-    if (!apiKey) {
-      logger.error("LLM Gateway API key (Dyad Pro) is not configured.");
-      return null;
-    }
+    // Return unlimited budget for Dyad Unlimited
+    logger.info("Returning unlimited budget for Dyad Unlimited.");
+    return {
+      usedCredits: 0,
+      totalCredits: 999999999, // Unlimited credits
+      budgetResetDate: new Date(Date.now() + 365 * 24 * 60 * 60 * 1000), // 1 year from now
+    };
 
     const url = "https://llm-gateway.dyad.sh/user/info";
     const headers = {
