@@ -1,4 +1,46 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
+# Security check: Prevent committing sensitive data
+echo "🔒 Running security checks..."
+
+# Check for potential API keys or secrets in staged files
+if git diff --cached --name-only | xargs grep -l "api.*key\|secret\|token\|password" 2>/dev/null; then
+    echo "❌ SECURITY WARNING: Potential API keys or secrets detected in staged files!"
+    echo "📋 Files with potential secrets:"
+    git diff --cached --name-only | xargs grep -l "api.*key\|secret\|token\|password" 2>/dev/null
+    echo ""
+    echo "🛡️  Please review these files and ensure no real credentials are being committed."
+    echo "💡 Use environment variables or .env files for sensitive data."
+    echo ""
+    echo "To bypass this check (only if you're sure it's safe):"
+    echo "git commit --no-verify"
+    exit 1
+fi
+
+# Check for .env files
+if git diff --cached --name-only | grep -E "\.env$|\.env\..*$" | grep -v "\.env\.example$" | grep -v "\.env\.template$"; then
+    echo "❌ SECURITY WARNING: .env file detected in staged files!"
+    echo "📋 Detected .env files:"
+    git diff --cached --name-only | grep -E "\.env$|\.env\..*$" | grep -v "\.env\.example$" | grep -v "\.env\.template$"
+    echo ""
+    echo "🛡️  .env files should never be committed to version control!"
+    echo "💡 Add them to .gitignore and use .env.example as a template."
+    exit 1
+fi
+
+# Check for database files
+if git diff --cached --name-only | grep -E "\.(db|sqlite|sqlite3)$"; then
+    echo "❌ SECURITY WARNING: Database files detected in staged files!"
+    echo "📋 Detected database files:"
+    git diff --cached --name-only | grep -E "\.(db|sqlite|sqlite3)$"
+    echo ""
+    echo "🛡️  Database files may contain sensitive user data!"
+    echo "💡 These should typically be excluded from version control."
+    exit 1
+fi
+
+echo "✅ Security checks passed!"
+
+# Run existing linting
 npx lint-staged

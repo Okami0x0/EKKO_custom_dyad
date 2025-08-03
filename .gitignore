@@ -101,3 +101,62 @@ out/
 sqlite.db
 userData/
 .env.local
+
+# === SECURITY: API Keys and Sensitive Data ===
+# Environment files with API keys
+.env*
+!.env.example
+!.env.template
+
+# Application settings and user data
+settings.json
+user-settings.json
+app-settings.json
+
+# Database files with user data
+*.db
+*.sqlite
+*.sqlite3
+*.db-journal
+*.db-wal
+*.db-shm
+
+# Credentials and tokens
+*token*
+*secret*
+*key*
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
+auth.json
+credentials.json
+
+# OS-specific files that might contain sensitive data
+.DS_Store
+Thumbs.db
+
+# Editor and IDE files that might contain sensitive configs
+.vscode/settings.json
+.idea/
+*.swp
+*.swo
+*~
+
+# Backup files
+*.bak
+*.backup
+*.old
+
+# Temporary and cache files
+temp/
+tmp/
+.cache/
+.temp/
+
+# User-specific application data
+userData/
+appData/
+user-data/
+app-data/
