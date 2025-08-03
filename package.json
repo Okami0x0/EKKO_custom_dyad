@@ -1,12 +1,12 @@
 {
-  "name": "dyad-unlimited",
-  "productName": "Dyad Unlimited",
-  "version": "0.15.0-beta.2",
-  "description": "Dyad Unlimited - Open Source AI App Builder",
+  "name": "okami-custom-dyad",
+  "productName": "Okami Custom Dyad - Unlimited Enhanced Edition",
+  "version": "1.0.0-custom",
+  "description": "Okami Custom Dyad - Enhanced AI App Builder with Advanced Memory Management",
   "main": ".vite/build/main.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/dyad-sh/dyad.git"
+    "url": "https://github.com/Okami0x0/Okami_custom_dyad.git"
   },
   "engines": {
     "node": ">=20"
