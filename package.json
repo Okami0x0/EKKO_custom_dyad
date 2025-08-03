@@ -6,7 +6,7 @@
   "main": ".vite/build/main.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Okami0x0/Okami_custom_dyad.git"
+    "url": "git@github.com:Okami0x0/EKKO_custom_dyad.git"
   },
   "engines": {
     "node": ">=20"
