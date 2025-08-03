@@ -21,6 +21,15 @@ const DEFAULT_CONTEXT_WINDOW = 128_000;
 export async function getContextWindow() {
   const settings = readSettings();
   const modelOption = await findLanguageModel(settings.selectedModel);
+  
+  // Use enhanced memory context tokens if available and enabled
+  if (settings.enableSmartMemoryManagement && settings.maxMemoryContextTokens) {
+    const maxMemoryTokens = settings.maxMemoryContextTokens;
+    const modelContextWindow = modelOption?.contextWindow || DEFAULT_CONTEXT_WINDOW;
+    // Use the larger of the two for maximum capacity
+    return Math.max(maxMemoryTokens, modelContextWindow);
+  }
+  
   return modelOption?.contextWindow || DEFAULT_CONTEXT_WINDOW;
 }
 
