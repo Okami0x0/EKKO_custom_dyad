@@ -1,6 +1,6 @@
 {
-  "name": "okami-custom-dyad",
-  "productName": "Okami Custom Dyad - Unlimited Enhanced Edition",
+  "name": "ekko",
+  "productName": "Ekko - AI Development Platform",
   "version": "1.0.0-custom",
   "description": "Okami Custom Dyad - Enhanced AI App Builder with Advanced Memory Management",
   "main": ".vite/build/main.js",
@@ -8,7 +8,7 @@
     "node": ">=20"
   },
   "scripts": {
-    "clean": "rm -rf out && rm -rf scaffold/node_modules",
+    "clean": "if exist out rmdir /s /q out && if exist scaffold\node_modules rmdir /s /q scaffold\node_modules",
     "start": "electron-forge start",
     "dev:engine": "DYAD_ENGINE_URL=http://localhost:8080/v1 npm start",
     "staging:engine": "DYAD_ENGINE_URL=https://staging---dyad-llm-engine-kq7pivehnq-uc.a.run.app/v1 npm start",
