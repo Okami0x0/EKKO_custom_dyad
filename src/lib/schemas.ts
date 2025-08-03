@@ -97,6 +97,17 @@ export const SupabaseSchema = z.object({
 });
 export type Supabase = z.infer<typeof SupabaseSchema>;
 
+export const FirebaseSchema = z.object({
+  projectId: z.string().optional(),
+  serviceAccountKey: SecretSchema.optional(),
+  webApiKey: z.string().optional(),
+  authDomain: z.string().optional(),
+  storageBucket: z.string().optional(),
+  messagingSenderId: z.string().optional(),
+  appId: z.string().optional(),
+});
+export type Firebase = z.infer<typeof FirebaseSchema>;
+
 export const ExperimentsSchema = z.object({
   // Deprecated
   enableSupabaseIntegration: z.boolean().describe("DEPRECATED").optional(),
@@ -145,6 +156,7 @@ export const UserSettingsSchema = z.object({
   githubAccessToken: SecretSchema.optional(),
   vercelAccessToken: SecretSchema.optional(),
   supabase: SupabaseSchema.optional(),
+  firebase: FirebaseSchema.optional(),
   autoApproveChanges: z.boolean().optional(),
   telemetryConsent: z.enum(["opted_in", "opted_out", "unset"]).optional(),
   telemetryUserId: z.string().optional(),

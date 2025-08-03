@@ -33,6 +33,7 @@ export const DyadAddIntegration: React.FC<DyadAddIntegrationProps> = ({
     navigate({ to: "/app-details", search: { appId } });
   };
 
+  // Check for Supabase integration
   if (app?.supabaseProjectName) {
     return (
       <div className="flex flex-col  my-2 p-3 border border-green-300 rounded-lg bg-green-50 shadow-sm">
@@ -67,6 +68,49 @@ export const DyadAddIntegration: React.FC<DyadAddIntegrationProps> = ({
             This app is connected to Supabase project:{" "}
             <span className="font-mono font-medium bg-green-100 px-1 py-0.5 rounded">
               {app.supabaseProjectName}
+            </span>
+          </p>
+          <p>Click the chat suggestion "Keep going" to continue.</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Check for Firebase integration
+  if (app?.firebaseProjectName) {
+    return (
+      <div className="flex flex-col  my-2 p-3 border border-orange-300 rounded-lg bg-orange-50 shadow-sm">
+        <div className="flex items-center space-x-2">
+          <svg
+            className="w-5 h-5 text-orange-600"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth={2}
+            viewBox="0 0 24 24"
+          >
+            <circle
+              cx="12"
+              cy="12"
+              r="10"
+              stroke="currentColor"
+              strokeWidth="2"
+              fill="#fed7aa"
+            />
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M9 12l2 2 4-4"
+            />
+          </svg>
+          <span className="font-semibold text-orange-800">
+            Firebase integration complete
+          </span>
+        </div>
+        <div className="text-sm text-orange-900">
+          <p>
+            This app is connected to Firebase project:{" "}
+            <span className="font-mono font-medium bg-orange-100 px-1 py-0.5 rounded">
+              {app.firebaseProjectName}
             </span>
           </p>
           <p>Click the chat suggestion "Keep going" to continue.</p>

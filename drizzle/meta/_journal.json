@@ -64,6 +64,13 @@
       "when": 1752625491756,
       "tag": "0008_medical_vulcan",
       "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "6",
+      "when": 1754186693801,
+      "tag": "0009_left_trauma",
+      "breakpoints": true
     }
   ]
 }
