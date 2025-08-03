@@ -52,61 +52,31 @@ const queryClient = new QueryClient({
   }),
 });
 
+// DISABLED: PostHog telemetry completely disabled for privacy
 const posthogClient = posthog.init(
-  "phc_5Vxx0XT8Ug3eWROhP6mm4D6D2DgIIKT232q4AKxC2ab",
+  "disabled", // Disabled API key
   {
-    api_host: "https://us.i.posthog.com",
-    // @ts-ignore
-    debug: import.meta.env.MODE === "development",
+    api_host: "https://localhost", // Redirect to localhost (no data sent)
+    debug: false,
     autocapture: false,
-    capture_exceptions: true,
+    capture_exceptions: false,
     capture_pageview: false,
-    before_send: (event) => {
-      if (!isTelemetryOptedIn()) {
-        console.debug("Telemetry not opted in, skipping event");
-        return null;
-      }
-      const telemetryUserId = getTelemetryUserId();
-      if (telemetryUserId) {
-        posthogClient.identify(telemetryUserId);
-      }
-
-      if (event?.properties["$ip"]) {
-        event.properties["$ip"] = null;
-      }
-
-      console.debug(
-        "Telemetry opted in - UUID:",
-        telemetryUserId,
-        "sending event",
-        event,
-      );
-      return event;
+    disabled: true, // Completely disable PostHog
+    before_send: () => {
+      // Always block all telemetry data
+      console.debug("[PRIVACY] Telemetry disabled - no data sent");
+      return null;
     },
-    persistence: "localStorage",
+    persistence: "memory", // Don't persist anything
+    opt_out_capturing_by_default: true,
   },
 );
 
 function App() {
   useEffect(() => {
-    // Subscribe to navigation state changes
-    const unsubscribe = router.subscribe("onResolved", (navigation) => {
-      // Capture the navigation event in PostHog
-      posthog.capture("navigation", {
-        toPath: navigation.toLocation.pathname,
-        fromPath: navigation.fromLocation?.pathname,
-      });
-
-      // Optionally capture as a standard pageview as well
-      posthog.capture("$pageview", {
-        path: navigation.toLocation.pathname,
-      });
-    });
-
-    // Clean up subscription when component unmounts
-    return () => {
-      unsubscribe();
-    };
+    // DISABLED: Navigation tracking removed for privacy
+    console.debug("[PRIVACY] Navigation tracking disabled");
+    // No telemetry data collected or sent
   }, []);
 
   return <RouterProvider router={router} />;

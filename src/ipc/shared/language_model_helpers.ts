@@ -142,6 +142,64 @@ export const MODEL_OPTIONS: Record<string, ModelOption[]> = {
       contextWindow: 128_000,
     },
   ],
+  // Together AI models - https://docs.together.ai/docs/inference-models
+  together: [
+    {
+      name: "meta-llama/Llama-3.3-70B-Instruct-Turbo",
+      displayName: "Llama 3.3 70B Instruct Turbo",
+      description: "Fast and powerful Llama model by Meta",
+      maxOutputTokens: 32_000,
+      contextWindow: 131_072,
+    },
+    {
+      name: "meta-llama/Meta-Llama-3.1-405B-Instruct-Turbo",
+      displayName: "Llama 3.1 405B Instruct Turbo", 
+      description: "Largest Llama model with exceptional capabilities",
+      maxOutputTokens: 32_000,
+      contextWindow: 131_072,
+    },
+    {
+      name: "Qwen/Qwen2.5-Coder-32B-Instruct",
+      displayName: "Qwen2.5 Coder 32B",
+      description: "Specialized coding model",
+      maxOutputTokens: 32_000,
+      contextWindow: 131_072,
+    },
+  ],
+  // Cerebras AI models - https://inference-docs.cerebras.ai/
+  cerebras: [
+    {
+      name: "llama3.1-70b",
+      displayName: "Llama 3.1 70B",
+      description: "High-performance Llama model on Cerebras hardware",
+      maxOutputTokens: 32_000,
+      contextWindow: 128_000,
+    },
+    {
+      name: "llama3.1-8b",
+      displayName: "Llama 3.1 8B",
+      description: "Efficient Llama model on Cerebras hardware",
+      maxOutputTokens: 32_000,
+      contextWindow: 128_000,
+    },
+  ],
+  // Grok (xAI) models - https://docs.x.ai/
+  grok: [
+    {
+      name: "grok-beta",
+      displayName: "Grok Beta",
+      description: "xAI's witty and capable AI model",
+      maxOutputTokens: 32_000,
+      contextWindow: 131_072,
+    },
+    {
+      name: "grok-vision-beta",
+      displayName: "Grok Vision Beta",
+      description: "Grok with vision capabilities",
+      maxOutputTokens: 16_000,
+      contextWindow: 8_192,
+    },
+  ],
   auto: [
     {
       name: "auto",
@@ -162,6 +220,9 @@ export const PROVIDER_TO_ENV_VAR: Record<string, string> = {
   anthropic: "ANTHROPIC_API_KEY",
   google: "GEMINI_API_KEY",
   openrouter: "OPENROUTER_API_KEY",
+  together: "TOGETHER_API_KEY",
+  cerebras: "CEREBRAS_API_KEY", 
+  grok: "GROK_API_KEY",
 };
 
 export const CLOUD_PROVIDERS: Record<
@@ -196,6 +257,24 @@ export const CLOUD_PROVIDERS: Record<
     hasFreeTier: true,
     websiteUrl: "https://openrouter.ai/settings/keys",
     gatewayPrefix: "openrouter/",
+  },
+  together: {
+    displayName: "Together AI",
+    hasFreeTier: false,
+    websiteUrl: "https://api.together.xyz/settings/api-keys",
+    gatewayPrefix: "together/",
+  },
+  cerebras: {
+    displayName: "Cerebras AI",
+    hasFreeTier: false,
+    websiteUrl: "https://cloud.cerebras.ai/platform/api-keys",
+    gatewayPrefix: "cerebras/",
+  },
+  grok: {
+    displayName: "Grok (xAI)",
+    hasFreeTier: false,
+    websiteUrl: "https://console.x.ai/",
+    gatewayPrefix: "grok/",
   },
   auto: {
     displayName: "Dyad",

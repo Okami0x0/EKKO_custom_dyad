@@ -39,6 +39,8 @@ const providers = [
   "together",
   "groq",
   "deepseek",
+  "cerebras", // Added Cerebras AI
+  "grok",     // Added Grok (xAI)
 ] as const;
 
 export const cloudProviders = providers.filter(
